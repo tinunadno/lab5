@@ -1,9 +1,9 @@
 package lab5;
 
-import lab5.MainClasses.CommandReg;
-import lab5.MainClasses.JsonToLabWork;
-import lab5.MainClasses.LabWorkListManager;
-import lab5.StoredClasses.LabWork;
+import lab5.mainClasses.CommandReg;
+import lab5.mainClasses.JsonToLabWork;
+import lab5.mainClasses.LabWorkListManager;
+import lab5.storedClasses.LabWork;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Main{
