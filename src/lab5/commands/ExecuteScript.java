@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 public class ExecuteScript implements Command, CommandWithArgument{
 	private String argument;
 	private Scanner sc;
+	private int recDepth=0;
 	@Override
 	public void execute(){
 		try{
@@ -35,7 +36,11 @@ public class ExecuteScript implements Command, CommandWithArgument{
 					LabWorkListManager.set(index, lw);
 					break;
 				default:
-					CommandReg.invoke(cmd);
+					if(cmd.equals("execute_script"))
+						if(++recDepth<5)
+							CommandReg.invoke(cmd);
+					else
+						CommandReg.invoke(cmd);
 					break;
 			}
 			 
