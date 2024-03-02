@@ -27,7 +27,11 @@ public class LabWorkListManager{
 	public static void set(int id, LabWork lw){list.set(id, lw);}
 	
 	public static void remove(int id){
-		list.remove(id);
+
+		try{list.remove(id);}
+		catch(IndexOutOfBoundsException e){
+			System.out.println("this index doesnt exists");
+		}
 	}
 	
 	public static void clear(){
