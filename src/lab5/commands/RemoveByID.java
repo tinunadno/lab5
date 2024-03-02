@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class RemoveByID implements CommandWithArgument {
+public class RemoveByID extends Command implements CommandWithArgument {
 	private String argument;
 	@Override
 	public void execute(){

@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class PrintFieldAscendingDifficulty implements Command {
+public class PrintFieldAscendingDifficulty extends Command{
 	@Override
 	public void execute(){
 		LabWorkListManager.printFieldAscendingDifficulty();

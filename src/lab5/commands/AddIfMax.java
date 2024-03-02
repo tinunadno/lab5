@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class AddIfMax implements Command {
+public class AddIfMax extends Command{
 	@Override
 	public void execute(){
 		LabWorkListManager.addIfMax(LabWorkParser.parseLabWorkFromConsole());

@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class Info implements Command {
+public class Info extends Command {
 	@Override
 	public void execute(){
 		System.out.println(LabWorkListManager.getCollectionInfo());

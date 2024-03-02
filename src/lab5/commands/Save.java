@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class Save implements CommandWithArgument {
+public class Save extends Command implements CommandWithArgument {
 	private String argument;
 	@Override
 	public void execute(){

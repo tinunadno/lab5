@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class Clear implements Command {
+public class Clear extends Command{
 	@Override
 	public void execute(){
 		LabWorkListManager.clear();

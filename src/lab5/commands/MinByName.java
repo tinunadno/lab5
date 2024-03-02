@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class MinByName implements Command {
+public class MinByName extends Command{
 	@Override
 	public void execute(){
 		LabWorkListManager.printMinByName();

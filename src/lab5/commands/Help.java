@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.Controller;
 
-public class Help implements Command {
+public class Help extends Command {
 	@Override
 	public void execute(){
 		Controller.showComands();

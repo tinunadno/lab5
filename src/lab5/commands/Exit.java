@@ -1,5 +1,5 @@
 package lab5.commands;
-public class Exit implements Command {
+public class Exit extends Command {
 	@Override
 	public void execute(){
 		System.exit(0);

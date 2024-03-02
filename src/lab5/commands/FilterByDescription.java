@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class FilterByDescription implements CommandWithArgument{
+public class FilterByDescription extends Command implements CommandWithArgument{
 	private String argument;
 	@Override
 	public void execute(){

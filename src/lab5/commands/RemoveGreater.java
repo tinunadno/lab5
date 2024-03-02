@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class RemoveGreater implements CommandWithArgument {
+public class RemoveGreater extends Command implements CommandWithArgument {
 	private String argument;
 	@Override
 	public void execute(){

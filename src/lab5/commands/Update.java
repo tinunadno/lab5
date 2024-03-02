@@ -3,7 +3,7 @@ package lab5.commands;
 import lab5.mainClasses.LabWorkListManager;
 import lab5.storedClasses.LabWork;
 
-public class Update implements CommandWithArgument {
+public class Update extends Command implements CommandWithArgument {
 	private String argument;
 	@Override
 	public void execute(){

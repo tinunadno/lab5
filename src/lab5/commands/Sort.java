@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.mainClasses.LabWorkListManager;
 
-public class Sort implements Command {
+public class Sort extends Command {
 	@Override
 	public void execute(){
 		LabWorkListManager.sort();
