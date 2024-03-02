@@ -86,7 +86,7 @@ public class LabWork implements Comparable<LabWork>{
 
     @Override
     public int compareTo(LabWork lw){
-        return (int) (-this.getMinimalPoint()-lw.getMinimalPoint());
+        return (int) (this.getMinimalPoint()-lw.getMinimalPoint());
     }
 
     public String toString() {
