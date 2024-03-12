@@ -7,13 +7,11 @@ import lab5.mainClasses.CommandReg;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-public class ExecuteScript extends Command implements CommandWithArgument{
+public class ExecuteScript implements Command, CommandWithArgument{
 	private String argument;
 	private Scanner sc;
-	private int recDepth=0;
 	@Override
 	public void execute(){
-
 		try{
 			File file = new File(argument.replace("\"", ""));
 			sc=new Scanner(file);
@@ -37,20 +35,12 @@ public class ExecuteScript extends Command implements CommandWithArgument{
 					LabWorkListManager.set(index, lw);
 					break;
 				default:
-					if((cmd.replaceAll("execute_script","")).length()<cmd.length()) {
-						if (++recDepth < 5)
-							CommandReg.invoke(cmd);
-						else
-							recDepth=0;
-					}
-					else
-						CommandReg.invoke(cmd);
+					CommandReg.invoke(cmd);
 					break;
 			}
 			 
 		}
 		System.out.println();
-
 		}catch(FileNotFoundException e){System.out.println("file not found");}
 	}
 	@Override
