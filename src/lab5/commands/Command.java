@@ -1,9 +1,14 @@
 package lab5.commands;
 
 public abstract class Command implements CommandNoArgument{
-    private boolean ifArgumentExists;
-    public void setArgumentExists(boolean argExists){this.ifArgumentExists=argExists;}
+    /**
+     * calls the corresponding function from LabWorkListManager class
+     */
     public abstract void execute();
+
+    /**
+     * returns name and description of a command
+     * @return
+     */
     public abstract String getComment();
-    public boolean argumentExists(){return ifArgumentExists;}
 }

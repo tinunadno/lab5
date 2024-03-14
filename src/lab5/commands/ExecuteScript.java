@@ -9,24 +9,26 @@ import java.io.File;
 import java.io.FileNotFoundException;
 public class ExecuteScript extends Command implements CommandWithArgument{
 	private String argument;
-	private Scanner sc;
+	private Scanner scanner;
 	private int recDepth=0;
 	@Override
 	public void execute(){
 		try{
+			//creating file scanner
 			File file = new File(argument.replace("\"", ""));
-			sc=new Scanner(file);
-			while(sc.hasNext()){
-				String cmd=sc.nextLine();
+			scanner =new Scanner(file);
+			while(scanner.hasNext()){
+				String cmd= scanner.nextLine();
 				LabWork lw;
+				//checking if next command need LabWork parse
 				switch(cmd){
 					case "add":
-						LabWorkParser.setScanner(sc);
+						LabWorkParser.setScanner(scanner);
 						lw=LabWorkParser.parseLabWorkFromConsole();
 						LabWorkListManager.append(lw);
 						break;
 					case "add_if_max":
-						LabWorkParser.setScanner(sc);
+						LabWorkParser.setScanner(scanner);
 						lw=LabWorkParser.parseLabWorkFromConsole();
 						LabWorkListManager.addIfMax(lw);
 						break;
@@ -36,6 +38,7 @@ public class ExecuteScript extends Command implements CommandWithArgument{
 						LabWorkListManager.set(index, lw);
 						break;
 					default:
+						//checking recursion depth if next command is execute_script
 						if((cmd.replaceAll("execute_script", "")).length()<cmd.length()) {
 							if (++recDepth < 5)
 								CommandReg.invoke(cmd);

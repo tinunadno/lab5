@@ -11,6 +11,12 @@ import org.json.simple.*;
 import org.json.simple.parser.*;
 @SuppressWarnings({"unchecked"})
 public class JsonToLabWork{
+	/**
+	 * convets json file to ArrayList of LabWork objects
+	 * @param way
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	public static ArrayList<LabWork> getLabWork(String way) throws FileNotFoundException{
 		//getting json file in String
 		String jsonString;
@@ -44,7 +50,12 @@ public class JsonToLabWork{
 		}
 
 	}
-	
+
+	/**
+	 * Converting jsonObject to LabWork
+	 * @param lwJSON
+	 * @return
+	 */
 	private static LabWork convertJsonToLabWork(JSONObject lwJSON){
 		JSONObject temp=(JSONObject)(lwJSON.get("Coordinates"));
 		//creating coordinates
@@ -74,7 +85,13 @@ public class JsonToLabWork{
 		
 		
 	}
-	
+
+	/**
+	 *
+	 * @param way
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	private static String readFile(String way) throws FileNotFoundException{
 		try {
             File file = new File(way);

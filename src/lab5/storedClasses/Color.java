@@ -4,15 +4,21 @@ public enum Color{
 	BLUE,
 	ORANGE,
 	WHITE;
+
+	/**
+	 * parse color
+	 * @param col
+	 * @return
+	 */
 	public static Color parse(String col){
 		switch(col){
-			case "RED":
+			case "RED", "1":
 				return Color.RED;
-			case "BLUE":
+			case "BLUE", "2":
 				return Color.BLUE;
-			case "ORANGE":
+			case "ORANGE", "3":
 				return Color.ORANGE;
-			case "WHITE":
+			case "WHITE", "4":
 				return Color.WHITE;
 		}
 		return null;

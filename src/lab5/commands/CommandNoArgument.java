@@ -1,5 +1,12 @@
 package lab5.commands;
 public interface CommandNoArgument {
-	public void execute();
-	public String getComment();
+	/**
+	 * calls the corresponding function from LabWorkListManager class
+	 */
+	void execute();
+	/**
+	 * returns name and description of a command
+	 * @return
+	 */
+	String getComment();
 }

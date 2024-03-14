@@ -1,8 +1,14 @@
 package lab5.mainClasses;
 
 public class CommandReg {
+    /**
+     * processing command
+     * @param com
+     */
     public static void invoke(String com){
-        if(charCount(com, " ")!=0){
+        //checking if command have an argument
+        if(com.length()-(com.replace(" ", "").length())!=0){
+            //separating command name and its argument
             String commandArgument=com.substring(com.indexOf(' ')+1, com.length());
             com=com.substring(0, com.indexOf(' '));
             Controller.invoke(com, commandArgument);
@@ -10,9 +16,6 @@ public class CommandReg {
         else{
             Controller.invoke(com);
         }
-    }
-    private static int charCount(String word, String letter){
-        return word.length()-(word.replace(letter, "")).length();
     }
 
 }

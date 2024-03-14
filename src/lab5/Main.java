@@ -11,9 +11,10 @@ public class Main{
 	public static void main(String[] args){
 		sc=new Scanner(System.in);
 		getFileFromWay();
+
 		while(true){
 			CommandReg.invoke(sc.nextLine().strip());
-		}	
+		}
 	}
 
 	private static void getFileFromWay(){

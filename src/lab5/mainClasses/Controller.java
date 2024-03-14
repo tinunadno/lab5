@@ -5,6 +5,10 @@ import lab5.commands.*;
 import java.util.Map;
 import java.util.HashMap;
 public class Controller {
+	/**
+	 * 	Map with command objects and names
+	 */
+
 	private static Map<String, Command> comands=new HashMap<String, Command>();
 	static{
 		comands.put("help", new Help());
@@ -24,12 +28,22 @@ public class Controller {
 		comands.put("save", new Save());
 		comands.put("execute_script", new ExecuteScript());
 	}
-	
+
+	/**
+	 * Calls command object without argument
+	 * @param key
+	 */
 	public static void invoke(String key){
 		try{
 		comands.get(key).execute();
 		}catch(NullPointerException e){System.out.println("\""+key+"\" is not a command, use help for syntax");}
 	}
+
+	/**
+	 * calls command object with argument
+	 * @param key
+	 * @param argument
+	 */
 	public static void invoke(String key, String argument){
 		try{
 			((CommandWithArgument)(comands.get(key))).setArgument(argument);
@@ -38,8 +52,10 @@ public class Controller {
 			System.out.println("\""+key+"\" is not a command, use help for syntax");
 		}
 	}
-	
-	
+
+	/**
+	 * showing command names and descriptions from commands Map
+	 */
 	public static void showComands(){
 		System.out.println("commands without arguments:");
 		for (CommandNoArgument value : comands.values()) {

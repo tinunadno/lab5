@@ -1,15 +1,27 @@
 package lab5.commands;
+import java.awt.geom.Arc2D;
 import java.util.Scanner;
+import java.util.function.Function;
+
 import lab5.storedClasses.*;
 
 public class LabWorkParser {
     private static Scanner in;
     private static boolean isFromFile=false;
+
+    /**
+     * if commands are in file, console scanner changing to file scanner, created in command class
+     * @param scan
+     */
     public static void setScanner(Scanner scan){
         in=scan;
         isFromFile=true;
     }
 
+    /**
+     * parsing LabWork object from console one field at time
+     * @return
+     */
     public static LabWork parseLabWorkFromConsole(){
         try{
             if(in==null || in.hasNext()==false)in=new Scanner(System.in);
@@ -18,23 +30,20 @@ public class LabWorkParser {
             System.out.print("name<String>:");
             String name=in.nextLine();
 
-            System.out.println(name);
-
             System.out.println("Coordinates:");
-            float x=tryParseFloat("\tx<float>:");
-            System.out.print("\ty<int>:");
-            int y=tryParseInt("\ty<int>:");
+            float x=tryParseNumber("\tx<float>:", Float::parseFloat);
+            int y=tryParseNumber("\ty<int>:", Integer::parseInt);
             Coordinates coordinates=new Coordinates(x, y);
 
-            float minimalPoint=tryParseFloat("minimalPoint<float>:");
+            float minimalPoint=tryParseNumber("minimalPoint<float>:", Float::parseFloat);
 
             System.out.print("description<String>:");
             String description=(in.nextLine());
 
-            int tunedInWorks=tryParseInt("tunedInWorks<int>:");
+            int tunedInWorks=tryParseNumber("\ttunedInWorks<int>:", Integer::parseInt);
 
             System.out.print("Difficulty(Only {VERY_HARD; INSANE; TERRIBLE} allowed):");
-            Difficulty difficulty=Difficulty.parse(in.nextLine());
+            Difficulty difficulty=tryparseEnum(Difficulty.class);
 
             System.out.println("Person:");
             System.out.print("\tname<String>:");
@@ -42,10 +51,10 @@ public class LabWorkParser {
             System.out.print("\tpassportId<String>:");
             String passportId=(in.nextLine());
             System.out.print("\teyeColor(Only {RED; BLUE; ORANGE; WHITE} allowed):");
-            Color eyeColor=Color.parse(in.nextLine());
+            Color eyeColor=tryparseEnum(Color.class);
             System.out.println("\t\tLocation:");
-            float locationX=tryParseFloat("\t\tx<float>:");
-            float locationY=tryParseFloat("\t\ty<float>:");
+            float locationX=tryParseNumber("\tx<float>:", Float::parseFloat);
+            float locationY=tryParseNumber("\ty<float>:", Float::parseFloat);
             System.out.print("\t\tname<String>:");
             String locationName=(in.nextLine());
             Location location=new Location(locationX, locationY, locationName);
@@ -59,37 +68,56 @@ public class LabWorkParser {
         return null;
     }
 
-    private static float tryParseFloat(String msg){
+    /**
+     * reading value from console, until it gets float
+     * @param msg
+     * @return
+     */
+    private static<T> T tryParseNumber(String msg, Function<String, T> parser){
         boolean flag=false;
-        float ret=0.0f;
         while(!flag){
             System.out.print(msg);
             try {
-                ret=Float.parseFloat(in.nextLine());
-                flag=true;
+                return parser.apply(in.nextLine());
             }catch(NumberFormatException e){
                 System.out.println("bad Number format");
                 if(isFromFile)
                     flag=true;
             }
         }
-        return ret;
+        return parser.apply("0");
     }
 
-    private static int tryParseInt(String msg){
-        boolean flag=false;
-        int ret=0;
-        while(!flag){
-            System.out.print(msg);
-            try {
-                ret=Integer.parseInt(in.nextLine());
-                flag=true;
-            }catch(NumberFormatException e){
-                System.out.println("bad Number format");
-                if(isFromFile)
-                    flag=true;
+    /**
+     * reading value from console, until it gets Enum name
+     * @param enumClass
+     * @return
+     * @param <T>
+     */
+    static <T extends Enum<T>> T tryparseEnum(Class<T> enumClass){
+        if(isFromFile)return parseEnum(enumClass, "1");
+        while(true){
+            T parsedEnum=parseEnum(enumClass, in.nextLine());
+            if(parsedEnum==null)
+                System.out.println("bad enum format");
+            else return parsedEnum;
+        }
+    }
+
+    /**
+     * parsing enum
+     * @param enumClass
+     * @param col
+     * @return
+     * @param <T>
+     */
+    static <T extends Enum<T>> T parseEnum(Class<T> enumClass, String col) {
+        int k=0;
+        for (T constant : enumClass.getEnumConstants()) {
+            if (constant.name().equalsIgnoreCase(col) || constant.name().equals(col) || col.equals((++k+""))) {
+                return constant;
             }
         }
-        return ret;
+        return null;
     }
 }

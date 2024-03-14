@@ -1,4 +1,8 @@
 package lab5.commands;
 public interface CommandWithArgument {
-    public void setArgument(String arg);
+    /**
+     * setting the argument of the command to its object
+     * @param arg
+     */
+    void setArgument(String arg);
 }
